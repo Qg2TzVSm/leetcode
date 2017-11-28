@@ -1,0 +1,50 @@
+## Given a string, you need to reverse the order of characters in each word 
+## within a sentence while still preserving whitespace and initial word order.
+
+## Example 1:
+## Input: "Let's take LeetCode contest"
+## Output: "s'teL ekat edoCteeL tsetnoc"
+## Note: In the string, each word is separated by single space and there will not be any extra space in the string.
+
+
+## python
+
+class Solution:
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s = s.split(' ')
+        a = ''
+        l = len(s)
+        for x in s:
+            a += x[::-1]
+            if l > 1:
+                a += ' '
+                l -= 1
+
+        return(a)
+
+s = Solution()
+s = s.reverseWords("Let's take LeetCode contest") 
+print(s)
+## 用timeit测了下，我的答案用时是标准答案的6-7倍。。。 
+## 标准答案： 
+## return ' '.join(s.split()[::-1])[::-1]
+
+## javascript
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function(s) {
+
+    var sttr = 'Let\'s take LeetCode contest'
+    return (sttr.split("").reverse().join('')).split(' ').reverse().join(' ');
+
+};
+
+## 标准答案：用了map
+## return s.split(' ').map(word => word.split('').reverse().join('')).join(' ');
